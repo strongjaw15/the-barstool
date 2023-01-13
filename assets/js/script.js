@@ -9,3 +9,18 @@ fetch(cockTailApi)
   console.log(data);
 })
 
+
+
+var btn = document.getElementById("open-modal");
+var modal = document.getElementById("my-modal");
+var xBtn = document.getElementById("close-me");
+
+
+btn.addEventListener("click", function(){
+  console.log("btn")
+  modal.setAttribute("style", "display: block");
+})
+
+xBtn.addEventListener("click", function(){
+  modal.setAttribute("style", "display: none");
+})
