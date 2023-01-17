@@ -9,6 +9,7 @@ fetch(cockTailApi)
   console.log(data);
 })
 
+<<<<<<< HEAD
 /*// const cockTailSrcByName = "http://www.thecocktaildb.com/api/json/v1/1/search.php?s="; // these are full and working api links and are only examples
 // const rndCocktail = "http://www.thecocktaildb.com/api/json/v1/1/random.php";
 
@@ -61,3 +62,20 @@ apiReturnByName();
 // <input type="text" class="form-control" placeholder="Liquor">
 // <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
 // </div> */
+=======
+
+
+var btn = document.getElementById("open-modal");
+var modal = document.getElementById("my-modal");
+var xBtn = document.getElementById("close-me");
+
+
+btn.addEventListener("click", function(){
+  console.log("btn")
+  modal.setAttribute("style", "display: block");
+})
+
+xBtn.addEventListener("click", function(){
+  modal.setAttribute("style", "display: none");
+})
+>>>>>>> d9843555d7f47308bf8d09f2b00442ed1ef28176
