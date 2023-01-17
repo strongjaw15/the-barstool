@@ -1,4 +1,20 @@
 
+let srcName = $("#search-input").val()
+let drinkName // <-- this needs to come from the table
+let videoUrl;
+
+//fetch(cockTailApi)
+//.then(function(response){
+//  console.log(response);
+//  return(response.json());
+//})
+//.then(function(data){
+//  console.log(data);
+//})
+
+
+
+
 // <div class="input-group mb-3">
 // <input type="text" class="form-control" placeholder="Liquor">
 // <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
@@ -12,8 +28,10 @@
  var cockTailApi = "http://www.thecocktaildb.com/api/json/v1/1/";
 // splitting these links into pieces for easier mix and matching later to return different drink names to it later...
 
+
 const paramSearchIngre = "filter.php?i="
 const paramId = "lookup.php?i="
+
 
 
 var apiSrcReturn = [];
@@ -27,10 +45,10 @@ $( "#button-addon2" ).click(function() {
   apiReturnByName();
 });
 
-
-
 function apiReturnByName (){
+
   fetch(cockTailApi + paramSearchIngre + srcIngre) // later on srcName should be whatever the user wants to search the database for as in whatever drink they want to search for and the database returns any and all cocktails with that string in it.
+
   .then(function(response){
     return(response.json());
   })
@@ -59,7 +77,17 @@ function get8Drinks(drinkIDs){
   });
 }
 
-
+// This searches youtube for the drink tutorial video and saves the video url.
+function searchYoutube(){
+  fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${drinkName} drink tutorial&type=video&key=AIzaSyBgNbBjMVwGDdZ73CdMuSGRUcsWDxKD7HI`)
+  .then(function(reply){
+    return reply.json()
+  })
+  .then(function(data){
+    videoUrl = `https://www.youtube.com/watch?v=${data.items[0].id.videoId}`
+    localStorage.setItem("videoUrl", JSON.stringify(videoUrl))
+  })
+}
 
 
 
