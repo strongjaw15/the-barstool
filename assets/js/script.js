@@ -1,3 +1,7 @@
+let srcName = $("#search-input").val()
+let drinkName // <-- this needs to come from the table
+let videoUrl;
+
 fetch(cockTailApi)
 .then(function(response){
   console.log(response);
@@ -23,7 +27,7 @@ fetch(cockTailApi)
 // splitting these links into pieces for easier mix and matching later to return different drink names to it later...
 
 const paramSearch = "search.php?s="
-let srcName = "margarita"
+srcName = "margarita" // <-- don't need this anymore? -CW
 
 var apiSrcReturn = [];
 
@@ -46,10 +50,8 @@ $( "#button-addon2" ).click(function() {
   console.log("logging tabble body-- ",);
 });
 
-
-
 function apiReturnByName (){
-  fetch(cockTailApi + paramSearch + srcName) // later on srcName should be whatever the user wants to search the database for as in whatever drink they want to search for and the database returns any and all cocktails with that string in it.
+  fetch(cockTailApi + paramSearch + srcName)
   .then(function(response){
     return(response.json());
   })
@@ -61,7 +63,17 @@ function apiReturnByName (){
 
 apiReturnByName();
 
-
+// This searches youtube for the drink tutorial video and saves the video url.
+function searchYoutube(){
+  fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${drinkName} drink tutorial&type=video&key=AIzaSyBgNbBjMVwGDdZ73CdMuSGRUcsWDxKD7HI`)
+  .then(function(reply){
+    return reply.json()
+  })
+  .then(function(data){
+    videoUrl = `https://www.youtube.com/watch?v=${data.items[0].id.videoId}`
+    localStorage.setItem("videoUrl", JSON.stringify(videoUrl))
+  })
+}
 
 
 
