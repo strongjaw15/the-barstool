@@ -1,15 +1,17 @@
+
 let srcName = $("#search-input").val()
 let drinkName // <-- this needs to come from the table
 let videoUrl;
 
-fetch(cockTailApi)
-.then(function(response){
-  console.log(response);
-  return(response.json());
-})
-.then(function(data){
-  console.log(data);
-})
+//fetch(cockTailApi)
+//.then(function(response){
+//  console.log(response);
+//  return(response.json());
+//})
+//.then(function(data){
+//  console.log(data);
+//})
+
 
 
 
@@ -26,42 +28,54 @@ fetch(cockTailApi)
  var cockTailApi = "http://www.thecocktaildb.com/api/json/v1/1/";
 // splitting these links into pieces for easier mix and matching later to return different drink names to it later...
 
-const paramSearch = "search.php?s="
-srcName = "margarita" // <-- don't need this anymore? -CW
+
+const paramSearchIngre = "filter.php?i="
+const paramId = "lookup.php?i="
+
+
 
 var apiSrcReturn = [];
 
-fetch(cockTailApi + paramSearch + srcName)
-.then(function(response){
-  console.log("this should return margarita---------: ",response);
-  return(response.json());
-})
-.then(function(data){
-  console.log(data);
-})
+let srcIngre = "" ; // leave this in the global scope it makes life more easier :) dpfl'skjng ;sdlkfnds;lfnkds;flkn
 
 $( "#button-addon2" ).click(function() {
-  var thing1 = $(".searchDrink");
-  srcName = thing1.val();
+  var thing1 = $("#drink-input");
+  srcIngre = thing1.val();
+  console.log("logging name input: ", srcIngre);
   apiReturnByName();
-  console.log("loggin apisrcReturn--", apiSrcReturn)
-
-  var tableBody = $("#tablebody").children().removeProp()
-  console.log("logging tabble body-- ",);
 });
 
 function apiReturnByName (){
-  fetch(cockTailApi + paramSearch + srcName)
+
+  fetch(cockTailApi + paramSearchIngre + srcIngre) // later on srcName should be whatever the user wants to search the database for as in whatever drink they want to search for and the database returns any and all cocktails with that string in it.
+
   .then(function(response){
     return(response.json());
   })
   .then(function(data){
-    console.log(`searched for: ${srcName} :api returned- \n`,data);// NOTE: later this should return the drink names and briefe info to the html
+    console.log(`searched for: ${srcIngre} :api returned- \n`,data);// should be deleted before final product
     apiSrcReturn = data;
+    var drinkIDs = []
+    for(var i = 0; i < 8; i++){
+      drinkIDs.push(data.drinks[Math.floor(Math.random()*(data.drinks.length - 0) + 0)].idDrink)
+      
+    }
+    get8Drinks(drinkIDs);
   })
 }
 
-apiReturnByName();
+function get8Drinks(drinkIDs){
+  console.log("loggin drink ids from get8drinks",drinkIDs)
+  drinkIDs.forEach(element => {
+    fetch(cockTailApi + paramId + element)
+    .then(function(response){
+      return (response.json());
+    })
+    .then(function(data){
+      console.log(data);
+    })
+  });
+}
 
 // This searches youtube for the drink tutorial video and saves the video url.
 function searchYoutube(){
@@ -77,16 +91,16 @@ function searchYoutube(){
 
 
 
-var btn = document.getElementById("open-modal");
-var modal = document.getElementById("my-modal");
-var xBtn = document.getElementById("close-me");
+// var btn = document.getElementById("open-modal");
+// var modal = document.getElementById("my-modal");
+// var xBtn = document.getElementById("close-me");
 
 
-btn.addEventListener("click", function(){
-  console.log("btn")
-  modal.setAttribute("style", "display: block");
-})
+// btn.addEventListener("click", function(){
+//   console.log("btn")
+//   modal.setAttribute("style", "display: block");
+// })
 
-xBtn.addEventListener("click", function(){
-  modal.setAttribute("style", "display: none");
-})
+// xBtn.addEventListener("click", function(){
+//   modal.setAttribute("style", "display: none");
+// })
