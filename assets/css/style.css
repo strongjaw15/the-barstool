@@ -1,8 +1,6 @@
-/* body {
-    height: 100vh;
-    background-image: url(./edgar-chaparro-Lwx-q6OdGAc-unsplash\ \(1\).jpg);
-    background-size: cover;
-} */
+* {
+  font-family: 'Indie Flower', cursive;
+}
 
 header {
     height: 10rem;
@@ -76,26 +74,8 @@ aside {
               inset 0 0 1.3rem #ffae00; 
 }
 
-/* table, th, td, tr {
-    border: 5px solid white;
-    
-} */
-
-
-.neonText {
-    color: #fff;
-    text-shadow:
-      0 0 7px #fff,
-      0 0 10px #fff,
-      0 0 21px #fff,
-      0 0 42px #ff4800,
-      0 0 82px #ff4800,
-      0 0 92px #ff4800,
-      0 0 102px #ff4800,
-      0 0 151px #ff4800;
-  }
-
   h1.neonText {
+    cursor: pointer;
     color: #fff;
     text-shadow:
       0 0 7px #fff,
@@ -119,6 +99,7 @@ aside {
   }
 
   h2.neonText {
+    cursor: default;
     color: #fff;
     text-shadow:
       0 0 7px #fff,
@@ -142,6 +123,7 @@ aside {
   }
 
   p.neonText {
+    cursor: pointer;
     color: #fff;
     text-shadow:
       0 0 7px #fff,
@@ -164,6 +146,7 @@ aside {
               inset 0 0 1.3rem #ff7b00; 
   }
   
+  /* add's flicker effect to text */
   @keyframes pulsate-red {
       
     100% {
@@ -254,5 +237,17 @@ aside {
       0 0 70px #ff7b00,
       0 0 80px #ff7b00;
 
+  }
+}
+
+a:link {
+  text-decoration: none;
+}
+
+/* changes at this media size */
+@media screen and (max-width: 928px) {
+  main {
+    flex-direction: column;
+    padding-left: 2rem;
   }
 }

@@ -1,23 +1,10 @@
-let drinkName // <-- this needs to come from the table
-let videoUrl;
-
-//fetch(cockTailApi)
-//.then(function(response){
-//  console.log(response);
-//  return(response.json());
-//})
-//.then(function(data){
-//  console.log(data);
-//})
 
 
 
-
-// <div class="input-group mb-3">
-// <input type="text" class="form-control" placeholder="Liquor">
-// <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-// </div> */
-
+$(function () {
+  // let drinkName // <-- this needs to come from the table
+  let videoUrl;
+  let forIngredients;
 
 
  const cockTailSrcByName = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="; // these are full and working api links and are only examples
@@ -33,7 +20,7 @@ const paramId = "lookup.php?i="
 
 
 var apiSrcReturn = [];
-
+var srcDrinkConts = [];
 let srcIngre = "" ; // leave this in the global scope it makes life more easier :) dpfl'skjng ;sdlkfnds;lfnkds;flkn
 
 $( "#search-button-yeah" ).click(function() {
@@ -62,51 +49,81 @@ function apiReturnByName (){
   })
 }
 
-function get8Drinks(drinkIDs){
-  console.log("loggin drink ids from get8drinks",drinkIDs)
-  drinkIDs.forEach(element => {
-    fetch(cockTailApi + paramId + element)
-    .then(function(response){
-      return (response.json());
+async function get8Drinks(drinkIDs){
+
+  const arrOfData = await Promise.all( 
+    drinkIDs.map( async (drinkId) => {
+      const newObj = { id: drinkId }
+      const resp = await fetch(cockTailApi + paramId + drinkId)
+      const drinkInfo = await resp.json()
+      newObj.info = drinkInfo
+      return newObj
     })
-    .then(function(data){
-      console.log(data);
-    })
-  });
+  )
+
+  
+  writeTable(arrOfData);
+}
+
+
+function writeTable(arrOfData){
+  console.log("went to writetable")
+  console.log(arrOfData);
+  forIngredients = arrOfData
+  wipeTable();
+  arrOfData.forEach((drink, i) => {
+    console.log(drink);
+    //$("#drink-results-go-here").append($("<tr>")).append($("<td>")).text(`${drink.info.drinks[0].strDrink}`),($("<td>")).text(`${'dlfdf'}`)
+
+    $("#drink-results-go-here").append($(`<tr><td>${drink.info.drinks[0].strDrink}</td><td>${ingredients(i)}</td><td><button id="btnbruh">${`View Tutorial`}</button></td></tr>`))
+    $("#btnbruh").data("id", `${drink.info.drinks[0].strDrink}`);
+  })
+}
+
+// function newTab(){
+//   console.log("new tab yupyupypuypuupyupyupyupyupyupyuypuyuy");
+//   searchYoutube($(this).data("id"));
+//   window.open(videoUrl);
+//   $(this).data("id");
+// }
+
+$("#drink-results-go-here").on("click", "#btnbruh", function(){
+  searchYoutube($(this).data("id"));
+  var tabthing = "https://strongjaw15.github.io/the-barstool/video/"
+  window.open(tabthing);
+  // $(this).data("id");
+})
+
+
+function ingredients(i){
+  let ingredientList = []
+  for(index=1;index<16;index++){
+    let ingredientNumber = `strIngredient${index}`
+    if (forIngredients[i].info.drinks[0][ingredientNumber] != null){
+      ingredientList.push(forIngredients[i].info.drinks[0][ingredientNumber])
+    }
+  }
+  return ingredientList.join(", ")
+}
+
+function wipeTable(){
+  console.log("went to wipetable")
+  $("#drink-results-go-here").empty()
+ // corrin smort
 }
 
 
 
-{/* <tbody id="drink-results-go-here">
-<tr>
-  <td>Mimosa</td>
-  <td>Champagne, Orange Juice</td>
-  <td>View Link</td>
-  <td><button>X</button></td>
-</tr>
-<tr>
-  <td>Moscow Mule</td>
-  <td>Vodka, Lime Juice, Ginger Beer</td>
-  <td>View Link</td>
-  <td><button>X</button></td>
-
-</tr>
-<tr>
-  <td>Tequila Sunrise</td>
-  <td>Tequila, Grenadine, Orange Juice</td>
-  <td>View Link</td>
-  <td><button>X</button></td> */}
-
 
 // This searches youtube for the drink tutorial video and saves the video url.
-function searchYoutube(){
+function searchYoutube(drinkName){
   fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${drinkName} drink tutorial&type=video&key=AIzaSyBgNbBjMVwGDdZ73CdMuSGRUcsWDxKD7HI`)
   .then(function(reply){
     return reply.json()
   })
   .then(function(data){
-    videoUrl = `https://www.youtube.com/watch?v=${data.items[0].id.videoId}`
-    localStorage.setItem("videoUrl", JSON.stringify(videoUrl))
+    videoUrl = `https://youtu.be/${data.items[0].id.videoId}`
+    localStorage.setItem("videoUrl", videoUrl);
   })
 }
 
@@ -123,3 +140,7 @@ function searchYoutube(){
 // xBtn.addEventListener("click", function(){
 //   modal.setAttribute("style", "display: none");
 // })
+
+
+});
+
