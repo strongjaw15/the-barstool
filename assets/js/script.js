@@ -1,8 +1,4 @@
-
-
-
 $(function () {
-  // let drinkName // <-- this needs to come from the table
   let videoUrl;
   let forIngredients;
 
@@ -23,6 +19,7 @@ var apiSrcReturn = [];
 var srcDrinkConts = [];
 let srcIngre = "" ; // leave this in the global scope it makes life more easier :) dpfl'skjng ;sdlkfnds;lfnkds;flkn
 
+// This is the search button.
 $( "#search-button-yeah" ).click(function() {
   var thing1 = $("#drink-input");
   srcIngre = thing1.val();
@@ -49,6 +46,7 @@ function apiReturnByName (){
   })
 }
 
+// This is some wizard asynchronous code that Gary and Dani's boyfriend co-authored.
 async function get8Drinks(drinkIDs){
 
   const arrOfData = await Promise.all( 
@@ -65,7 +63,7 @@ async function get8Drinks(drinkIDs){
   writeTable(arrOfData);
 }
 
-
+// This populates the table with search results.
 function writeTable(arrOfData){
   console.log("went to writetable")
   console.log(arrOfData);
@@ -80,21 +78,7 @@ function writeTable(arrOfData){
   })
 }
 
-// function newTab(){
-//   console.log("new tab yupyupypuypuupyupyupyupyupyupyuypuyuy");
-//   searchYoutube($(this).data("id"));
-//   window.open(videoUrl);
-//   $(this).data("id");
-// }
-
-$("#drink-results-go-here").on("click", "#btnbruh", function(){
-  searchYoutube($(this).data("id"));
-  var tabthing = "https://strongjaw15.github.io/the-barstool/video/"
-  window.open(tabthing);
-  // $(this).data("id");
-})
-
-
+// This gets the ingredients for the table.
 function ingredients(i){
   let ingredientList = []
   for(index=1;index<16;index++){
@@ -106,14 +90,19 @@ function ingredients(i){
   return ingredientList.join(", ")
 }
 
+// This is the event listener for the video tab button.
+$("#drink-results-go-here").on("click", "#btnbruh", function(){
+  searchYoutube($(this).data("id"));
+  var newTab = "https://strongjaw15.github.io/the-barstool/assets/html/video.html"
+  window.open(newTab);
+})
+
+// This wipes the table contents before a new population.
 function wipeTable(){
   console.log("went to wipetable")
   $("#drink-results-go-here").empty()
  // corrin smort
 }
-
-
-
 
 // This searches youtube for the drink tutorial video and saves the video url.
 function searchYoutube(drinkName){
@@ -126,6 +115,8 @@ function searchYoutube(drinkName){
     localStorage.setItem("videoUrl", videoUrl);
   })
 }
+
+// This is a commented out modal that we might not use.
 
 // var btn = document.getElementById("open-modal");
 // var modal = document.getElementById("my-modal");
@@ -140,7 +131,4 @@ function searchYoutube(drinkName){
 // xBtn.addEventListener("click", function(){
 //   modal.setAttribute("style", "display: none");
 // })
-
-
 });
-
