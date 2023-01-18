@@ -92,9 +92,8 @@ function ingredients(i){
 
 // This is the event listener for the video tab button.
 $("#drink-results-go-here").on("click", "#btnbruh", function(){
+  console.log(`this is the drink name: ${$(this).data("id")}`)
   searchYoutube($(this).data("id"));
-  var newTab = "https://strongjaw15.github.io/the-barstool/assets/html/video.html"
-  window.open(newTab);
 })
 
 // This wipes the table contents before a new population.
@@ -112,8 +111,16 @@ function searchYoutube(drinkName){
   })
   .then(function(data){
     videoUrl = `https://youtu.be/${data.items[0].id.videoId}`
+    console.log(`This is the video url: ${videoUrl}`)
     localStorage.setItem("videoUrl", videoUrl);
+    openNewTab()
   })
+}
+
+// This actually opens the new tab once the video has been set.
+function openNewTab(){
+  var newTab = "https://strongjaw15.github.io/the-barstool/assets/html/video.html"
+  window.open(newTab);
 }
 
 // This is a commented out modal that we might not use.
