@@ -3,3 +3,68 @@
 	/* max-width: 500px; */
 	width: 75%
 }
+
+header {
+	height: 10rem;
+	background-image: url(./pictures/anastase-maragos-lZzlMYL7Q0Y-unsplash.jpg);
+	background-size: cover;
+}
+
+.header-text {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding: 1.5rem;
+}
+
+h1.neonText {
+	color: #fff;
+	text-shadow:
+		0 0 7px #fff,
+		0 0 10px #fff,
+		0 0 21px #fff,
+		0 0 42px #ff4800,
+		0 0 82px #ff4800,
+		0 0 92px #ff4800,
+		0 0 102px #ff4800,
+		0 0 151px #ff4800;
+	animation: pulsate-red 2.5s infinite alternate;  
+	border: 0.2rem solid #fff;
+	border-radius: 2rem;
+	padding: 1rem;
+	box-shadow: 0 0 .2rem #fff,
+						0 0 .2rem #fff,
+						0 0 2rem #ff4800,
+						0 0 0.8rem #ff4800,
+						0 0 2.8rem #ff4800,
+						inset 0 0 1.3rem #ff4800; 
+}
+
+main {
+	display: flex;
+	align-items: center;
+	height: 100vh;
+	background-image: url(./pictures/edgar-chaparro-Lwx-q6OdGAc-unsplash\ \(1\).jpg);
+	background-size: cover;
+	background-position: center;
+	border-top: 1rem solid #fff;
+	box-shadow: 0 0 .2rem #fff,
+						0 0 .2rem #fff,
+						0 0 2rem #ffae00,
+						0 0 0.8rem #ffae00,
+						0 0 2.8rem #ffae00,
+					 0 0 1.3rem #ffae00; 
+}
+
+#player {
+	animation: pulsate-yellow 2.5s infinite alternate;  
+    border: 0.2rem solid #fff;
+    border-radius: 2rem;
+    padding: 1rem;
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #ffe100,
+              0 0 0.8rem #ffe100,
+              0 0 2.8rem #ffe100,
+              inset 0 0 1.3rem #ffe100; 
+}
