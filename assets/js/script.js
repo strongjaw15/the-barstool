@@ -1,23 +1,9 @@
-let drinkName // <-- this needs to come from the table
-let videoUrl;
-
-//fetch(cockTailApi)
-//.then(function(response){
-//  console.log(response);
-//  return(response.json());
-//})
-//.then(function(data){
-//  console.log(data);
-//})
 
 
 
-
-// <div class="input-group mb-3">
-// <input type="text" class="form-control" placeholder="Liquor">
-// <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-// </div> */
-
+$(function () {
+  let drinkName // <-- this needs to come from the table
+  let videoUrl;
 
 
  const cockTailSrcByName = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="; // these are full and working api links and are only examples
@@ -33,7 +19,7 @@ const paramId = "lookup.php?i="
 
 
 var apiSrcReturn = [];
-
+var srcDrinkConts = [];
 let srcIngre = "" ; // leave this in the global scope it makes life more easier :) dpfl'skjng ;sdlkfnds;lfnkds;flkn
 
 $( "#search-button-yeah" ).click(function() {
@@ -62,22 +48,93 @@ function apiReturnByName (){
   })
 }
 
-function get8Drinks(drinkIDs){
-  console.log("loggin drink ids from get8drinks",drinkIDs)
-  drinkIDs.forEach(element => {
-    fetch(cockTailApi + paramId + element)
-    .then(function(response){
-      return (response.json());
+async function get8Drinks(drinkIDs){
+
+  const arrOfData = await Promise.all( 
+    drinkIDs.map( async (drinkId) => {
+      const newObj = { id: drinkId }
+      const resp = await fetch(cockTailApi + paramId + drinkId)
+      const drinkInfo = await resp.json()
+      newObj.info = drinkInfo
+      return newObj
     })
-    .then(function(data){
-      console.log(data);
-    })
-  });
+  )
+
+  
+  writeTable(arrOfData);
 }
 
 
+function writeTable(arrOfData){
+  console.log("went to writetable")
+  console.log(arrOfData);
+  wipeTable();
+  arrOfData.forEach(drink => {
+    console.log(drink);
+    //$("#drink-results-go-here").append($("<tr>")).append($("<td>")).text(`${drink.info.drinks[0].strDrink}`),($("<td>")).text(`${'dlfdf'}`)
 
-{/* <tbody id="drink-results-go-here">
+    $("#drink-results-go-here").append($(`<tr><td>${drink.info.drinks[0].strDrink}</td><td>xxxxx</td></tr>`))
+    
+  
+  })
+  
+}
+
+function wipeTable(){
+  console.log("went to wipetable")
+  $("#drink-results-go-here").empty()
+ // corrin smort
+}
+
+/*strIngredient1
+: 
+"Gin"
+strIngredient2
+: 
+"Tequila"
+strIngredient3
+: 
+"Vodka"
+strIngredient4
+: 
+"White rum"
+strIngredient5
+: 
+"Triple Sec"
+strIngredient6
+: 
+"Cherry Grenadine"
+strIngredient7
+: 
+"Sweet and sour"
+strIngredient8
+: 
+"Club soda"*/
+
+
+/*          <tbody id="drink-results-go-here">
+            <tr>
+              <td>Mimosa</td>
+              <td>Champagne, Orange Juice</td>
+              <td>View Link</td>
+              <td><button>X</button></td>
+            </tr>
+            <tr>
+              <td>Moscow Mule</td>
+              <td>Vodka, Lime Juice, Ginger Beer</td>
+              <td>View Link</td>
+              <td><button>X</button></td>
+
+            </tr>
+            <tr>
+              <td>Tequila Sunrise</td>
+              <td>Tequila, Grenadine, Orange Juice</td>
+              <td>View Link</td>
+              <td><button>X</button></td>
+            </tr>
+          </tbody>*/
+
+/* <tbody id="drink-results-go-here">
 <tr>
   <td>Mimosa</td>
   <td>Champagne, Orange Juice</td>
@@ -95,7 +152,7 @@ function get8Drinks(drinkIDs){
   <td>Tequila Sunrise</td>
   <td>Tequila, Grenadine, Orange Juice</td>
   <td>View Link</td>
-  <td><button>X</button></td> */}
+  <td><button>X</button></td> */
 
 
 // This searches youtube for the drink tutorial video and saves the video url.
@@ -124,5 +181,6 @@ function searchYoutube(){
 //   modal.setAttribute("style", "display: none");
 // })
 
-videoUrl = `https://youtu.be/qNhycX0XCJ0`
-localStorage.setItem("videoUrl", videoUrl)
+
+});
+
