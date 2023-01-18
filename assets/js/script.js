@@ -76,9 +76,9 @@ function writeTable(arrOfData){
     //$("#drink-results-go-here").append($("<tr>")).append($("<td>")).text(`${drink.info.drinks[0].strDrink}`),($("<td>")).text(`${'dlfdf'}`)
 
     $("#drink-results-go-here").append($(`<tr><td>${drink.info.drinks[0].strDrink}</td><td>${ingredients(i)}</td></tr>`))
-    
+  
   })
-
+  
 }
 
 function ingredients(i){
