@@ -1,5 +1,3 @@
-
-let srcName = $("#search-input").val()
 let drinkName // <-- this needs to come from the table
 let videoUrl;
 
@@ -38,7 +36,7 @@ var apiSrcReturn = [];
 
 let srcIngre = "" ; // leave this in the global scope it makes life more easier :) dpfl'skjng ;sdlkfnds;lfnkds;flkn
 
-$( "#button-addon2" ).click(function() {
+$( "#search-button-yeah" ).click(function() {
   var thing1 = $("#drink-input");
   srcIngre = thing1.val();
   console.log("logging name input: ", srcIngre);
@@ -76,6 +74,8 @@ function get8Drinks(drinkIDs){
     })
   });
 }
+
+
 
 {/* <tbody id="drink-results-go-here">
 <tr>
