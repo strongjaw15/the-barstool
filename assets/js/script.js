@@ -22,10 +22,10 @@ let videoUrl;
 
 
 
- const cockTailSrcByName = "http://www.thecocktaildb.com/api/json/v1/1/search.php?s="; // these are full and working api links and are only examples
- const rndCocktail = "http://www.thecocktaildb.com/api/json/v1/1/random.php";
+ const cockTailSrcByName = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="; // these are full and working api links and are only examples
+ const rndCocktail = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 
- var cockTailApi = "http://www.thecocktaildb.com/api/json/v1/1/";
+ var cockTailApi = "https://www.thecocktaildb.com/api/json/v1/1/";
 // splitting these links into pieces for easier mix and matching later to return different drink names to it later...
 
 
@@ -76,6 +76,27 @@ function get8Drinks(drinkIDs){
     })
   });
 }
+
+{/* <tbody id="drink-results-go-here">
+<tr>
+  <td>Mimosa</td>
+  <td>Champagne, Orange Juice</td>
+  <td>View Link</td>
+  <td><button>X</button></td>
+</tr>
+<tr>
+  <td>Moscow Mule</td>
+  <td>Vodka, Lime Juice, Ginger Beer</td>
+  <td>View Link</td>
+  <td><button>X</button></td>
+
+</tr>
+<tr>
+  <td>Tequila Sunrise</td>
+  <td>Tequila, Grenadine, Orange Juice</td>
+  <td>View Link</td>
+  <td><button>X</button></td> */}
+
 
 // This searches youtube for the drink tutorial video and saves the video url.
 function searchYoutube(){
