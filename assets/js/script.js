@@ -61,8 +61,6 @@ function get8Drinks(drinkIDs){
 
 
 
-
-
 // var btn = document.getElementById("open-modal");
 // var modal = document.getElementById("my-modal");
 // var xBtn = document.getElementById("close-me");
