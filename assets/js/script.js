@@ -4,6 +4,7 @@
 $(function () {
   let drinkName // <-- this needs to come from the table
   let videoUrl;
+  let forIngredients;
 
 
  const cockTailSrcByName = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="; // these are full and working api links and are only examples
@@ -68,16 +69,27 @@ async function get8Drinks(drinkIDs){
 function writeTable(arrOfData){
   console.log("went to writetable")
   console.log(arrOfData);
+  forIngredients = arrOfData
   wipeTable();
-  arrOfData.forEach(drink => {
+  arrOfData.forEach((drink, i) => {
     console.log(drink);
     //$("#drink-results-go-here").append($("<tr>")).append($("<td>")).text(`${drink.info.drinks[0].strDrink}`),($("<td>")).text(`${'dlfdf'}`)
 
-    $("#drink-results-go-here").append($(`<tr><td>${drink.info.drinks[0].strDrink}</td><td>xxxxx</td></tr>`))
+    $("#drink-results-go-here").append($(`<tr><td>${drink.info.drinks[0].strDrink}</td><td>${ingredients(i)}</td></tr>`))
     
-  
   })
-  
+
+}
+
+function ingredients(i){
+  let ingredientList = []
+  for(index=1;index<16;index++){
+    let ingredientNumber = `strIngredient${index}`
+    if (forIngredients[i].info.drinks[0][ingredientNumber] != null){
+      ingredientList.push(forIngredients[i].info.drinks[0][ingredientNumber])
+    }
+  }
+  return ingredientList.join(", ")
 }
 
 function wipeTable(){
