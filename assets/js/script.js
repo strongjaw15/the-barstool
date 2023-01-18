@@ -1,6 +1,7 @@
 $(function () {
   let videoUrl;
   let forIngredients;
+  let videoSearch;
 
 
  const cockTailSrcByName = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="; // these are full and working api links and are only examples
@@ -72,9 +73,8 @@ function writeTable(arrOfData){
   arrOfData.forEach((drink, i) => {
     console.log(drink);
     //$("#drink-results-go-here").append($("<tr>")).append($("<td>")).text(`${drink.info.drinks[0].strDrink}`),($("<td>")).text(`${'dlfdf'}`)
-
-    $("#drink-results-go-here").append($(`<tr><td>${drink.info.drinks[0].strDrink}</td><td>${ingredients(i)}</td><td><button id="btnbruh">${`View Tutorial`}</button></td></tr>`))
-    $("#btnbruh").data("id", `${drink.info.drinks[0].strDrink}`);
+    
+    $("#drink-results-go-here").append($(`<tr><td>${drink.info.drinks[0].strDrink}</td><td>${ingredients(i)}</td><td><button id="video-button" data-id="${drink.info.drinks[0].strDrink.toLowerCase()}">${`View Tutorial`}</button></td></tr>`))
   })
 }
 
@@ -91,9 +91,11 @@ function ingredients(i){
 }
 
 // This is the event listener for the video tab button.
-$("#drink-results-go-here").on("click", "#btnbruh", function(){
+$("#drink-results-go-here").on("click", "#video-button", function(){
+  console.log($(this))
   console.log(`this is the drink name: ${$(this).data("id")}`)
-  searchYoutube($(this).data("id"));
+  videoSearch=$(this).data("id")
+  searchYoutube();
 })
 
 // This wipes the table contents before a new population.
@@ -104,8 +106,8 @@ function wipeTable(){
 }
 
 // This searches youtube for the drink tutorial video and saves the video url.
-function searchYoutube(drinkName){
-  fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${drinkName} drink tutorial&type=video&key=AIzaSyBgNbBjMVwGDdZ73CdMuSGRUcsWDxKD7HI`)
+function searchYoutube(){
+  fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${videoSearch} drink tutorial&type=video&key=AIzaSyBgNbBjMVwGDdZ73CdMuSGRUcsWDxKD7HI`)
   .then(function(reply){
     return reply.json()
   })
