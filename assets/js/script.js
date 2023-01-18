@@ -162,8 +162,8 @@ function searchYoutube(){
     return reply.json()
   })
   .then(function(data){
-    videoUrl = `https://www.youtube.com/watch?v=${data.items[0].id.videoId}`
-    localStorage.setItem("videoUrl", JSON.stringify(videoUrl))
+    videoUrl = `https://youtu.be/${data.items[0].id.videoId}`
+    localStorage.setItem("videoUrl", videoUrl)
   })
 }
 
@@ -183,3 +183,4 @@ function searchYoutube(){
 
 
 });
+
