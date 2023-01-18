@@ -105,8 +105,8 @@ function searchYoutube(){
     return reply.json()
   })
   .then(function(data){
-    videoUrl = `https://www.youtube.com/watch?v=${data.items[0].id.videoId}`
-    localStorage.setItem("videoUrl", JSON.stringify(videoUrl))
+    videoUrl = `https://youtu.be/${data.items[0].id.videoId}`
+    localStorage.setItem("videoUrl", videoUrl)
   })
 }
 
@@ -123,3 +123,6 @@ function searchYoutube(){
 // xBtn.addEventListener("click", function(){
 //   modal.setAttribute("style", "display: none");
 // })
+
+videoUrl = `https://youtu.be/qNhycX0XCJ0`
+localStorage.setItem("videoUrl", videoUrl)
