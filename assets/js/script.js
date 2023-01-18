@@ -89,8 +89,6 @@ function searchYoutube(){
   })
 }
 
-
-
 // var btn = document.getElementById("open-modal");
 // var modal = document.getElementById("my-modal");
 // var xBtn = document.getElementById("close-me");
