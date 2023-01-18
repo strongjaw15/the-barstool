@@ -2,7 +2,7 @@
 
 
 $(function () {
-  let drinkName // <-- this needs to come from the table
+  // let drinkName // <-- this needs to come from the table
   let videoUrl;
   let forIngredients;
 
@@ -75,11 +75,25 @@ function writeTable(arrOfData){
     console.log(drink);
     //$("#drink-results-go-here").append($("<tr>")).append($("<td>")).text(`${drink.info.drinks[0].strDrink}`),($("<td>")).text(`${'dlfdf'}`)
 
-    $("#drink-results-go-here").append($(`<tr><td>${drink.info.drinks[0].strDrink}</td><td>${ingredients(i)}</td></tr>`))
-    
+    $("#drink-results-go-here").append($(`<tr><td>${drink.info.drinks[0].strDrink}</td><td>${ingredients(i)}</td><td><button id="btnbruh">${`View Tutorial`}</button></td></tr>`))
+    $("#btnbruh").data("id", `${drink.info.drinks[0].strDrink}`);
   })
-
 }
+
+// function newTab(){
+//   console.log("new tab yupyupypuypuupyupyupyupyupyupyuypuyuy");
+//   searchYoutube($(this).data("id"));
+//   window.open(videoUrl);
+//   $(this).data("id");
+// }
+
+$("#drink-results-go-here").on("click", "#btnbruh", function(){
+  searchYoutube($(this).data("id"));
+  var tabthing = "https://strongjaw15.github.io/the-barstool/video/"
+  window.open(tabthing);
+  // $(this).data("id");
+})
+
 
 function ingredients(i){
   let ingredientList = []
@@ -98,84 +112,18 @@ function wipeTable(){
  // corrin smort
 }
 
-/*strIngredient1
-: 
-"Gin"
-strIngredient2
-: 
-"Tequila"
-strIngredient3
-: 
-"Vodka"
-strIngredient4
-: 
-"White rum"
-strIngredient5
-: 
-"Triple Sec"
-strIngredient6
-: 
-"Cherry Grenadine"
-strIngredient7
-: 
-"Sweet and sour"
-strIngredient8
-: 
-"Club soda"*/
 
-
-/*          <tbody id="drink-results-go-here">
-            <tr>
-              <td>Mimosa</td>
-              <td>Champagne, Orange Juice</td>
-              <td>View Link</td>
-              <td><button>X</button></td>
-            </tr>
-            <tr>
-              <td>Moscow Mule</td>
-              <td>Vodka, Lime Juice, Ginger Beer</td>
-              <td>View Link</td>
-              <td><button>X</button></td>
-
-            </tr>
-            <tr>
-              <td>Tequila Sunrise</td>
-              <td>Tequila, Grenadine, Orange Juice</td>
-              <td>View Link</td>
-              <td><button>X</button></td>
-            </tr>
-          </tbody>*/
-
-/* <tbody id="drink-results-go-here">
-<tr>
-  <td>Mimosa</td>
-  <td>Champagne, Orange Juice</td>
-  <td>View Link</td>
-  <td><button>X</button></td>
-</tr>
-<tr>
-  <td>Moscow Mule</td>
-  <td>Vodka, Lime Juice, Ginger Beer</td>
-  <td>View Link</td>
-  <td><button>X</button></td>
-
-</tr>
-<tr>
-  <td>Tequila Sunrise</td>
-  <td>Tequila, Grenadine, Orange Juice</td>
-  <td>View Link</td>
-  <td><button>X</button></td> */
 
 
 // This searches youtube for the drink tutorial video and saves the video url.
-function searchYoutube(){
+function searchYoutube(drinkName){
   fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${drinkName} drink tutorial&type=video&key=AIzaSyBgNbBjMVwGDdZ73CdMuSGRUcsWDxKD7HI`)
   .then(function(reply){
     return reply.json()
   })
   .then(function(data){
     videoUrl = `https://youtu.be/${data.items[0].id.videoId}`
-    localStorage.setItem("videoUrl", videoUrl)
+    localStorage.setItem("videoUrl", videoUrl);
   })
 }
 
