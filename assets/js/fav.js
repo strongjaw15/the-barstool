@@ -33,6 +33,6 @@ function searchYoutube(){
 
 // This actually opens the new tab once the video has been set.
 function openNewTab(){
-  var newTab = "https://strongjaw15.github.io/the-barstool/assets/html/video.html"
+  var newTab = "./assets/html/video.html"
   window.open(newTab);
 }
