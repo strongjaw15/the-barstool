@@ -12,7 +12,11 @@ The user simply enters the spirit thep have available in the liquor search engin
 
 ## Visuals
 
-GIF & screenshots here. 
+![](./assets/images/TheBarstool.gif)
+
+![](./assets/images/TheBarstoolFavorites.gif)
+
+![](./assets/images/TheBarstoolVideo.gif)
 
 ## Link
 
@@ -21,8 +25,11 @@ https://strongjaw15.github.io/the-barstool/
 ## Credits
 
 Corin Wenger https://github.com/strongjaw15
+
 Milo Cohen https://github.com/whotf1
+
 Danielle Banovetz https://github.com/danibano
+
 Elizabeth Gonzalez https://github.com/ElizabethGonzalez11
 
 ## Built With

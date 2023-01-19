@@ -33,6 +33,6 @@ function searchYoutube(){
 
 // This actually opens the new tab once the video has been set.
 function openNewTab(){
-  var newTab = "./assets/html/video.html"
+  var newTab = "./video.html"
   window.open(newTab);
 }
