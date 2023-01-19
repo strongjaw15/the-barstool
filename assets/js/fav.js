@@ -1,11 +1,11 @@
 let videoSearch;
 
 // This gets the saved drinks from local storage.
-let savedDrinks = JSON.parse(localStorage.getItem("savedDrinks"));
+let savedDrinks = JSON.parse(localStorage.getItem("savedIngredients"));
 
 // This populates the table with the saved drinks.
 for(i=0;i<savedDrinks.length;i++){
-  $("tbody").append(`<tr><td>${savedDrinks[i].savedDrinkName.id}</td><td>${savedDrinks[i].savedDrinkName.ingredients}</td><td><button id="video-button" data-id="${savedDrinks[i].savedDrinkName.id}"></button></td></tr>`)
+  $("tbody").append(`<tr><td>${savedDrinks[i].name}</td><td>${savedDrinks[i].ingredients}</td><td><button id="video-button" data-id="${savedDrinks[i].name}"></button></td></tr>`)
 }
 
 // This is the event listener for the video button.
