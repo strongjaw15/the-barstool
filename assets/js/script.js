@@ -100,8 +100,8 @@ $("#drink-results-go-here").on('click',".saveDrinkButton", function () {
 //as long as savedDrinks exists in local storage
   if(localStorage.getItem("savedDrinks") != null){
     drinksLocalCheck = JSON.parse(localStorage.getItem('savedDrinks'));
+    savedIngredients = JSON.parse(localStorage.getItem("savedIngredients"));
     var checkDrinkName = $(this).data("id")
-    console.log(checkDrinkName);
     if (drinksLocalCheck.includes(checkDrinkName) != true){
       drinksLocalCheck.push(checkDrinkName);
       localStorage.setItem("savedDrinks",JSON.stringify(drinksLocalCheck))
@@ -124,8 +124,6 @@ $("#drink-results-go-here").on('click',".saveDrinkButton", function () {
     localStorage.setItem("savedIngredients",JSON.stringify(savedIngredients));
   }
 });
-
-
 
 
 // This is the event listener for the video tab button.
