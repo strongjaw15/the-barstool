@@ -73,8 +73,8 @@ function writeTable(arrOfData){
   arrOfData.forEach((drink, i) => {
     console.log(drink);
     //$("#drink-results-go-here").append($("<tr>")).append($("<td>")).text(`${drink.info.drinks[0].strDrink}`),($("<td>")).text(`${'dlfdf'}`)
-                                                                                                                                                                                                                                                                          // save drink button ID will always be (drink name)-saveID
-    $("#drink-results-go-here").append($(`<tr>  <td>${drink.info.drinks[0].strDrink}</td>  <td>${ingredients(i)}</td>  <td><button id="video-button" data-id="${drink.info.drinks[0].strDrink.toLowerCase()}">${`View Tutorial`}</button></td>  <td><button class="saveDrinkButton" id="${drink.info.drinks[0].strDrink.toLowerCase()}-saveID">SAVE THIS DRINK</button></td></tr>`))
+                                                                                                                                                                                                                                                                     
+    $("#drink-results-go-here").append($(`<tr>  <td>${drink.info.drinks[0].strDrink}</td>  <td>${ingredients(i)}</td>  <td><button id="video-button" data-id="${drink.info.drinks[0].strDrink.toLowerCase()}">${`View Tutorial`}</button></td>  <td><button class="saveDrinkButton" id="${drink.info.drinks[0].strDrink.toLowerCase()}-saveID">SAVE THIS DRINK</button></td>  </tr>`))
   })
 }
 
