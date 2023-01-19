@@ -23,13 +23,14 @@ main {
     background-image: url(./pictures/edgar-chaparro-Lwx-q6OdGAc-unsplash\ \(1\).jpg);
     background-size: cover;
     background-position: center;
+    border-bottom: 1rem solid #fff;
     border-top: 1rem solid #fff;
     box-shadow: 0 0 .2rem #fff,
               0 0 .2rem #fff,
               0 0 2rem #ffae00,
               0 0 0.8rem #ffae00,
               0 0 2.8rem #ffae00,
-             0 0 1.3rem #ffae00; 
+              0 0 1.3rem #ffae00; 
 }
 
 aside {
@@ -56,25 +57,7 @@ aside {
     justify-content: space-around;
 }
 
-.drink-table {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 1.5rem;
-    margin-right: 2rem;
-    background-color: black;
-    color: white;
-    border-radius: 2rem;
-    border: 0.2rem solid #fff;
-    box-shadow: 0 0 .2rem #fff,
-              0 0 .2rem #fff,
-              0 0 2rem #ffae00,
-              0 0 0.8rem #ffae00,
-              0 0 2.8rem #ffae00,
-              inset 0 0 1.3rem #ffae00; 
-}
-
-  h1.neonText {
+h1.neonText {
     cursor: pointer;
     color: #fff;
     text-shadow:
@@ -146,8 +129,39 @@ aside {
               inset 0 0 1.3rem #ff7b00; 
   }
   
-  /* add's flicker effect to text */
-  @keyframes pulsate-red {
+.drink-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1.5rem;
+    margin-right: 2rem;
+    background-color: black;
+    color: white;
+    border-radius: 2rem;
+    border: 0.2rem solid #fff;
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #ffae00,
+              0 0 0.8rem #ffae00,
+              0 0 2.8rem #ffae00,
+              inset 0 0 1.3rem #ffae00; 
+}  
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./pictures/anastase-maragos-lZzlMYL7Q0Y-unsplash.jpg);
+  background-size: cover;
+  height: 7rem;
+}
+
+.footer-text {
+  margin: 0;
+}
+
+/* add's flicker effect to text */
+@keyframes pulsate-red {
       
     100% {
   
@@ -176,7 +190,7 @@ aside {
       0 0 80px #ff4800;
 
   }
-}
+}  
 
 @keyframes pulsate-yellow {
       
@@ -248,6 +262,10 @@ a:link {
 @media screen and (max-width: 928px) {
   main {
     flex-direction: column;
-    padding-left: 2rem;
+    padding: 2rem;
   }
-}
+
+  .drink-table {
+    margin-left: 2rem;
+  }
+}  

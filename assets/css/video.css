@@ -1,3 +1,7 @@
+* {
+	font-family: 'Indie Flower', cursive;
+  }  
+
 .container {
 	margin: 20px auto;
 	/* max-width: 500px; */
@@ -40,6 +44,31 @@ h1.neonText {
 						inset 0 0 1.3rem #ff4800; 
 }
 
+p.neonText {
+    cursor: pointer;
+    color: #fff;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #ff7b00,
+      0 0 82px #ff7b00,
+      0 0 92px #ff7b00,
+      0 0 102px #ff7b00,
+      0 0 151px #ff7b00;
+    animation: pulsate-orange 2.5s infinite alternate;  
+    border: 0.2rem solid #fff;
+    border-radius: 2rem;
+    padding: 1rem;
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #ff7b00,
+              0 0 0.8rem #ff7b00,
+              0 0 2.8rem #ff7b00,
+              inset 0 0 1.3rem #ff7b00; 
+  }
+  
+
 main {
 	display: flex;
 	align-items: center;
@@ -47,6 +76,7 @@ main {
 	background-image: url(./pictures/edgar-chaparro-Lwx-q6OdGAc-unsplash\ \(1\).jpg);
 	background-size: cover;
 	background-position: center;
+  border-bottom: 1rem solid #fff;
 	border-top: 1rem solid #fff;
 	box-shadow: 0 0 .2rem #fff,
 						0 0 .2rem #fff,
@@ -69,3 +99,81 @@ main {
               inset 0 0 1.3rem #ffe100; 
 }
 
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./pictures/anastase-maragos-lZzlMYL7Q0Y-unsplash.jpg);
+  background-size: cover;
+  height: 7rem;
+}
+
+.footer-text {
+  margin: 0;
+}
+
+@keyframes pulsate-red {
+      
+    100% {
+  
+        text-shadow:
+        0 0 4px #ff4800,
+        0 0 11px #ff4800,
+        0 0 19px #ff4800,
+        0 0 40px #ff4800
+        0 0 80px #ff4800,
+        0 0 90px #ff4800,
+        0 0 100px #ff4800,
+        0 0 150px #ff4800;
+    
+    }
+    
+     0% {
+  
+      text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #fff,
+      0 0 10px #ff4800,
+      0 0 45px #ff4800,
+      0 0 55px #ff4800,
+      0 0 70px #ff4800,
+      0 0 80px #ff4800;
+
+  }
+}
+
+@keyframes pulsate-orange {
+      
+    100% {
+  
+        text-shadow:
+        0 0 4px #ff7b00,
+        0 0 11px #ff7b00,
+        0 0 19px #ff7b00,
+        0 0 40px #ff7b00
+        0 0 80px #ff7b00,
+        0 0 90px #ff7b00,
+        0 0 100px #ff7b00,
+        0 0 150px #ff7b00;
+    
+    }
+    
+     0% {
+  
+      text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #fff,
+      0 0 10px #ff7b00,
+      0 0 45px #ff7b00,
+      0 0 55px #ff7b00,
+      0 0 70px #ff7b00,
+      0 0 80px #ff7b00;
+
+  }
+}
+
+a:link {
+  text-decoration: none;
+}
