@@ -3,6 +3,7 @@ $(function () {
   let forIngredients;
   let videoSearch;
 
+  var savedIngredients = []
 
  const cockTailSrcByName = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="; // these are full and working api links and are only examples
  const rndCocktail = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
@@ -74,7 +75,7 @@ function writeTable(arrOfData){
     console.log(drink);
     //$("#drink-results-go-here").append($("<tr>")).append($("<td>")).text(`${drink.info.drinks[0].strDrink}`),($("<td>")).text(`${'dlfdf'}`)
                                                                                                                                                                                                                                                                      
-    $("#drink-results-go-here").append($(`<tr>  <td>${drink.info.drinks[0].strDrink}</td>  <td>${ingredients(i)}</td>  <td><button id="video-button" data-id="${drink.info.drinks[0].strDrink.toLowerCase()}">${`View Tutorial`}</button></td>  <td><button class="saveDrinkButton" id="${drink.info.drinks[0].strDrink.toLowerCase()}-saveID">SAVE THIS DRINK</button></td>  </tr>`))
+    $("#drink-results-go-here").append($(`<tr>  <td>${drink.info.drinks[0].strDrink}</td>  <td>${ingredients(i)}</td>  <td><button id="video-button" data-id="${drink.info.drinks[0].strDrink.toLowerCase()}">${`View Tutorial`}</button></td>  <td><button class="saveDrinkButton" data-id="${drink.info.drinks[0].strDrink.toLowerCase()}" data-ingredients="${ingredients(i)}">SAVE THIS DRINK</button></td>  </tr>`))
   })
 }
 
@@ -87,6 +88,7 @@ function ingredients(i){
       ingredientList.push(forIngredients[i].info.drinks[0][ingredientNumber])
     }
   }
+  
   return ingredientList.join(", ")
 }
 
@@ -94,6 +96,33 @@ function ingredients(i){
 
 $("#drink-results-go-here").on('click',".saveDrinkButton", function () {
   console.log("savedrink button clicked");
+  var drinksLocalCheck = [];
+//as long as savedDrinks exists in local storage
+  if(localStorage.getItem("savedDrinks") != null){
+    drinksLocalCheck = JSON.parse(localStorage.getItem('savedDrinks'));
+    var checkDrinkName = $(this).data("id")
+    console.log(checkDrinkName);
+    if (drinksLocalCheck.includes(checkDrinkName) != true){
+      drinksLocalCheck.push(checkDrinkName);
+      localStorage.setItem("savedDrinks",JSON.stringify(drinksLocalCheck))
+      var newobj = {"name":`${$(this).data("id")}`, 
+                    "ingredients": `${$(this).data("ingredients")}`}
+      savedIngredients.push(newobj);
+      localStorage.setItem("savedIngredients",JSON.stringify(savedIngredients));
+    }else{
+      alert("that Drink is already saved to your favorite drinks!")
+    }
+  }else{
+    //all of this will only be done once when local storage has nothing in it for the first time loading the page.
+    var checkDrinkName = $(this).data('id')
+    drinksLocalCheck.push(checkDrinkName)
+    localStorage.setItem("savedDrinks",JSON.stringify(drinksLocalCheck))
+
+    var newobj = {"name":`${$(this).data("id")}`, 
+    "ingredients": `${$(this).data("ingredients")}`}
+    savedIngredients.push(newobj);
+    localStorage.setItem("savedIngredients",JSON.stringify(savedIngredients));
+  }
 });
 
 
